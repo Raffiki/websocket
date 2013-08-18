@@ -1,16 +1,19 @@
 'use strict';
 
-var Websocket = require('../lib/websocket')
-var Server = require('../lib/websocket')
+var Server = require('../lib/server')
 
-var ws = new Websocket()
 
-var server = ws.listen(9000)
+var server = new Server()
+server.listen(9000)
 
-ws.on('connection', function () {
-    ws.send('connection')
+server.on('connection', function (ws) {
+    console.log('connected')
+    ws.on('message', function(message) {
+        console.log('received: %s', message);
+    });
+    ws.send('something');
 })
-ws.on('close', function () {
+server.on('close', function () {
     console.log('close')
 })
 
