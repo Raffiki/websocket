@@ -11,7 +11,7 @@ server.on('connection', function (ws) {
     ws.on('message', function(message) {
         console.log('received: %s', message);
     });
-    ws.send('something');
+//    ws.send('something');
 })
 server.on('close', function () {
     console.log('close')
